@@ -16,23 +16,7 @@ class GildedRose {
             if(isUnchangeableItem(i))
                 continue;
             if (isAgedItem(i)) {
-                if (isLessThanMaxQuality(i)) {
-                    increaseQuality(i);
-
-                    if (items[i].name.equals(BACKSTAGE)) {
-                        if (items[i].sellIn < 11) {
-                            if (isLessThanMaxQuality(i)) {
-                                increaseQuality(i);
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (isLessThanMaxQuality(i)) {
-                                increaseQuality(i);
-                            }
-                        }
-                    }
-                }
+                increaseAgedItemQuantity(i);
             } else {
                 if (isQualityGreaterThanZero(i)) {
                     decreaseQuality(i);
@@ -53,6 +37,26 @@ class GildedRose {
                         if (isQualityGreaterThanZero(i)) {
                             decreaseQuality(i);
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private void increaseAgedItemQuantity(int idx) {
+        if (isLessThanMaxQuality(idx)) {
+            increaseQuality(idx);
+
+            if (items[idx].name.equals(BACKSTAGE)) {
+                if (items[idx].sellIn < 11) {
+                    if (isLessThanMaxQuality(idx)) {
+                        increaseQuality(idx);
+                    }
+                }
+
+                if (items[idx].sellIn < 6) {
+                    if (isLessThanMaxQuality(idx)) {
+                        increaseQuality(idx);
                     }
                 }
             }
