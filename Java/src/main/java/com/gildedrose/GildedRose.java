@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.function.Supplier;
+
 class GildedRose {
     Item[] items;
 
@@ -32,6 +34,7 @@ class GildedRose {
     }
 
     private void updateQuantityBasedOnNegativeSellIn(int idx) {
+
         if (items[idx].name.equals(AGED_BRIE)) {
             if (isLessThanMaxQuality(idx)) {
                 increaseQuality(idx);
@@ -44,6 +47,19 @@ class GildedRose {
                     decreaseQuality(idx);
                 }
             }
+        }
+    }
+
+    private int expiredQualityCalculator(int idx) {
+        Item item = items[idx];
+        if(item.name.equals(AGED_BRIE)) {
+            return isLessThanMaxQuality(idx) ? item.quality + 1 : item.quality;
+        }
+        else if(item.name.equals(BACKSTAGE)) {
+            return 0;
+        }
+        else {
+            return isQualityGreaterThanZero(idx) ? item.quality - 1 : 0;
         }
     }
 
