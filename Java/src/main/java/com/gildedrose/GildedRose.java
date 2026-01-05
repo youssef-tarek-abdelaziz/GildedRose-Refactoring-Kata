@@ -39,7 +39,7 @@ class GildedRose {
                 }
             }
 
-            items[i].sellIn = items[i].sellIn - 1;
+            decreaseSellIn(i);
 
             if (items[i].sellIn < 0) {
                 if (items[i].name.equals(AGED_BRIE)) {
@@ -57,6 +57,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private void decreaseSellIn(int i) {
+        items[i].sellIn = items[i].sellIn - 1;
     }
 
     private boolean isUnchangeableItem(int idx) {
