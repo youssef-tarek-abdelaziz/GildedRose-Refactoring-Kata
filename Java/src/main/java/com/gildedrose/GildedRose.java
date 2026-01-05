@@ -50,7 +50,7 @@ class GildedRose {
                     }
                 } else {
                     if (items[i].name.equals(BACKSTAGE)) {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        items[i].quality = 0;
                     } else {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals(SULFURAS)) {
