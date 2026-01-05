@@ -26,18 +26,22 @@ class GildedRose {
             decreaseSellIn(i);
 
             if (isNegativeSellIn(i)) {
-                if (items[i].name.equals(AGED_BRIE)) {
-                    if (isLessThanMaxQuality(i)) {
-                        increaseQuality(i);
-                    }
-                } else {
-                    if (items[i].name.equals(BACKSTAGE)) {
-                        items[i].quality = 0;
-                    } else {
-                        if (isQualityGreaterThanZero(i)) {
-                            decreaseQuality(i);
-                        }
-                    }
+                updateQuantityBasedOnNegativeSellIn(i);
+            }
+        }
+    }
+
+    private void updateQuantityBasedOnNegativeSellIn(int idx) {
+        if (items[idx].name.equals(AGED_BRIE)) {
+            if (isLessThanMaxQuality(idx)) {
+                increaseQuality(idx);
+            }
+        } else {
+            if (items[idx].name.equals(BACKSTAGE)) {
+                items[idx].quality = 0;
+            } else {
+                if (isQualityGreaterThanZero(idx)) {
+                    decreaseQuality(idx);
                 }
             }
         }
