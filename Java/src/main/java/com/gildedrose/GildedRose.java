@@ -18,10 +18,8 @@ class GildedRose {
             if (isAgedItem(i) && isLessThanMaxQuality(i)) {
                 increaseQuality(i);
                 if (items[i].name.equals(BACKSTAGE)) {
-                    if (items[i].sellIn < 11) {
-                        if (isLessThanMaxQuality(i)) {
+                    if (items[i].sellIn < 11 && isLessThanMaxQuality(i)) {
                             increaseQuality(i);
-                        }
                     }
 
                     if (items[i].sellIn < 6) {
