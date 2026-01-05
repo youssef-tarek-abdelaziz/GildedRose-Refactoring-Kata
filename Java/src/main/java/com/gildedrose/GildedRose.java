@@ -34,20 +34,7 @@ class GildedRose {
     }
 
     private void updateQuantityBasedOnNegativeSellIn(int idx) {
-
-        if (items[idx].name.equals(AGED_BRIE)) {
-            if (isLessThanMaxQuality(idx)) {
-                increaseQuality(idx);
-            }
-        } else {
-            if (items[idx].name.equals(BACKSTAGE)) {
-                items[idx].quality = 0;
-            } else {
-                if (isQualityGreaterThanZero(idx)) {
-                    decreaseQuality(idx);
-                }
-            }
-        }
+        items[idx].quality = expiredQualityCalculator(idx);
     }
 
     private int expiredQualityCalculator(int idx) {
