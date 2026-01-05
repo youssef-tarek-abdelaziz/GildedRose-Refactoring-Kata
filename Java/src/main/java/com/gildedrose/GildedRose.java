@@ -25,7 +25,7 @@ class GildedRose {
 
             decreaseSellIn(i);
 
-            if (items[i].sellIn < 0) {
+            if (isNegativeSellIn(i)) {
                 if (items[i].name.equals(AGED_BRIE)) {
                     if (isLessThanMaxQuality(i)) {
                         increaseQuality(i);
@@ -41,6 +41,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private boolean isNegativeSellIn(int idx) {
+        return items[idx].sellIn < 0;
     }
 
     private void increaseAgedItemQuantity(int idx) {
