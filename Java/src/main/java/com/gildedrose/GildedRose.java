@@ -32,7 +32,7 @@ class GildedRose {
                     }
                 }
             else {
-                if (items[i].quality > 0) {
+                if (isQualityGreaterThanZero(i)) {
                     if (!items[i].name.equals(SULFURAS)) {
                         decreaseQuality(i);
                     }
@@ -52,7 +52,7 @@ class GildedRose {
                     if (items[i].name.equals(BACKSTAGE)) {
                         items[i].quality = 0;
                     } else {
-                        if (items[i].quality > 0) {
+                        if (isQualityGreaterThanZero(i)) {
                             if (!items[i].name.equals(SULFURAS)) {
                                 decreaseQuality(i);
                             }
@@ -61,6 +61,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private boolean isQualityGreaterThanZero(int idx) {
+        return items[idx].quality > 0;
     }
 
     private boolean isLessThanMaxQuality(int i) {
