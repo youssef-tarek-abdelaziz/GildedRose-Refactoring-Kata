@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,11 @@ class GildedRose {
         this.items = items;
     }
 
+    private void initSpecialIncreaseRules() {
+        Rule backstageIncreaseRule1 = new Rule(10, 1);
+        Rule backstageIncreaseRule2 = new Rule(5, 2);
+        specialIncreaseRules.put(BACKSTAGE, Arrays.asList(backstageIncreaseRule1, backstageIncreaseRule2));
+    }
 
 
     public void updateQuality() {
