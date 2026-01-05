@@ -44,7 +44,11 @@ class GildedRose {
             }
 
             if (items[i].sellIn < 0) {
-                if (!items[i].name.equals(AGED_BRIE)) {
+                if (items[i].name.equals(AGED_BRIE)) {
+                    if (items[i].quality < 50) {
+                        increaseQuality(i);
+                    }
+                } else {
                     if (!items[i].name.equals(BACKSTAGE)) {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals(SULFURAS)) {
@@ -53,10 +57,6 @@ class GildedRose {
                         }
                     } else {
                         items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        increaseQuality(i);
                     }
                 }
             }
