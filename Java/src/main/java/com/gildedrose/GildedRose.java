@@ -1,8 +1,6 @@
 package com.gildedrose;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class Rule {
     int maxSellIn;
@@ -23,11 +21,13 @@ class GildedRose {
 
     public GildedRose(Item[] items) {
         this.items = items;
+        initSpecialIncreaseRules();
     }
 
     private void initSpecialIncreaseRules() {
-        Rule backstageIncreaseRule1 = new Rule(10, 1);
-        Rule backstageIncreaseRule2 = new Rule(5, 2);
+        specialIncreaseRules = new HashMap<>();
+        Rule backstageIncreaseRule1 = new Rule(10, 2);
+        Rule backstageIncreaseRule2 = new Rule(5, 3);
         specialIncreaseRules.put(BACKSTAGE, Arrays.asList(backstageIncreaseRule1, backstageIncreaseRule2));
     }
 
@@ -75,22 +75,29 @@ class GildedRose {
 
     private void increaseAgedItemQuantity(int idx) {
         if (isLessThanMaxQuality(idx)) {
-            increaseQuality(idx);
-
-            if (items[idx].name.equals(BACKSTAGE)) {
-                if (items[idx].sellIn < 11) {
+            if(specialIncreaseRules.containsKey(items[idx].name)) {
+                int increaseTimes = getIncreaseTimes(idx);
+                for(int i = 0; i < increaseTimes; i++)
                     if (isLessThanMaxQuality(idx)) {
                         increaseQuality(idx);
                     }
-                }
-
-                if (items[idx].sellIn < 6) {
-                    if (isLessThanMaxQuality(idx)) {
-                        increaseQuality(idx);
-                    }
-                }
+            }
+            else {
+                    increaseQuality(idx);
             }
         }
+    }
+
+    private int getIncreaseTimes(int idx) {
+        int increaseTimes = 1;
+        List<Rule> rules = specialIncreaseRules.get(items[idx].name);
+        Rule targetRule = rules.stream()
+            .filter(r -> r.maxSellIn >= items[idx].sellIn)
+            .min(Comparator.comparingInt(r -> r.maxSellIn))
+            .orElse(null);
+        if(targetRule != null)
+            increaseTimes = targetRule.qualityDelta;
+        return increaseTimes;
     }
 
     private boolean isAgedItem(int i) {
