@@ -10,10 +10,10 @@ class Rule {
 
 class GildedRose {
     Item[] items;
-    String AGED_BRIE = "Aged Brie";
-    String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
-    String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    Map<String, List<Rule>> specialIncreaseRules;
+    private final String AGED_BRIE = "Aged Brie";
+    private final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private Map<String, List<Rule>> specialIncreaseRules;
 
     public GildedRose(Item[] items) {
         this.items = items;
