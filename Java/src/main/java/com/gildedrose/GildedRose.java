@@ -15,18 +15,21 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if(isUnchangeableItem(i))
                 continue;
-            if (isAgedItem(i) && isLessThanMaxQuality(i)) {
-                increaseQuality(i);
-                if (items[i].name.equals(BACKSTAGE)) {
-                    if (items[i].sellIn < 11) {
-                        if (isLessThanMaxQuality(i)) {
-                            increaseQuality(i);
-                        }
-                    }
+            if (isAgedItem(i)) {
+                if (isLessThanMaxQuality(i)) {
+                    increaseQuality(i);
 
-                    if (items[i].sellIn < 6) {
-                        if (isLessThanMaxQuality(i)) {
-                            increaseQuality(i);
+                    if (items[i].name.equals(BACKSTAGE)) {
+                        if (items[i].sellIn < 11) {
+                            if (isLessThanMaxQuality(i)) {
+                                increaseQuality(i);
+                            }
+                        }
+
+                        if (items[i].sellIn < 6) {
+                            if (isLessThanMaxQuality(i)) {
+                                increaseQuality(i);
+                            }
                         }
                     }
                 }
