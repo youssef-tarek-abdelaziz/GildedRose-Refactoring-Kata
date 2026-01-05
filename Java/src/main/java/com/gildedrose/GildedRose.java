@@ -1,6 +1,9 @@
 package com.gildedrose;
 
-import java.util.function.Supplier;
+class Rule {
+    int maxSellIn;
+    int qualityDelta;
+}
 
 class GildedRose {
     Item[] items;
@@ -12,7 +15,6 @@ class GildedRose {
     String AGED_BRIE = "Aged Brie";
     String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     String SULFURAS = "Sulfuras, Hand of Ragnaros";
-
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if(isUnchangeableItem(i))
