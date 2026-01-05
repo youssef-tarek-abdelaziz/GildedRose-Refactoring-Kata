@@ -6,6 +6,7 @@ class GildedRose {
     public GildedRose(Item[] items) {
         this.items = items;
     }
+
     String AGED_BRIE = "Aged Brie";
     String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     String SULFURAS = "Sulfuras, Hand of Ragnaros";
@@ -13,33 +14,32 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (items[i].name.equals(AGED_BRIE) || items[i].name.equals(BACKSTAGE)) {
-                    if (isLessThanMaxQuality(i)) {
-                        increaseQuality(i);
+                if (isLessThanMaxQuality(i)) {
+                    increaseQuality(i);
 
-                        if (items[i].name.equals(BACKSTAGE)) {
-                            if (items[i].sellIn < 11) {
-                                if (isLessThanMaxQuality(i)) {
-                                    increaseQuality(i);
-                                }
+                    if (items[i].name.equals(BACKSTAGE)) {
+                        if (items[i].sellIn < 11) {
+                            if (isLessThanMaxQuality(i)) {
+                                increaseQuality(i);
                             }
+                        }
 
-                            if (items[i].sellIn < 6) {
-                                if (isLessThanMaxQuality(i)) {
-                                    increaseQuality(i);
-                                }
+                        if (items[i].sellIn < 6) {
+                            if (isLessThanMaxQuality(i)) {
+                                increaseQuality(i);
                             }
                         }
                     }
                 }
-            else {
+            } else {
                 if (isQualityGreaterThanZero(i)) {
-                    if (!items[i].name.equals(SULFURAS)) {
+                    if (!isUnchangableItem(i)) {
                         decreaseQuality(i);
                     }
                 }
             }
 
-            if (!items[i].name.equals(SULFURAS)) {
+            if (!isUnchangableItem(i)) {
                 items[i].sellIn = items[i].sellIn - 1;
             }
 
@@ -53,7 +53,7 @@ class GildedRose {
                         items[i].quality = 0;
                     } else {
                         if (isQualityGreaterThanZero(i)) {
-                            if (!items[i].name.equals(SULFURAS)) {
+                            if (!isUnchangableItem(i)) {
                                 decreaseQuality(i);
                             }
                         }
@@ -61,6 +61,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private boolean isUnchangableItem(int idx) {
+        return items[idx].name.equals(SULFURAS);
     }
 
     private boolean isQualityGreaterThanZero(int idx) {
