@@ -49,14 +49,14 @@ class GildedRose {
                         increaseQuality(i);
                     }
                 } else {
-                    if (!items[i].name.equals(BACKSTAGE)) {
+                    if (items[i].name.equals(BACKSTAGE)) {
+                        items[i].quality = items[i].quality - items[i].quality;
+                    } else {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals(SULFURAS)) {
                                 decreaseQuality(i);
                             }
                         }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
                     }
                 }
             }
