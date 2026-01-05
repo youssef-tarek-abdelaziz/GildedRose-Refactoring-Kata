@@ -13,7 +13,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if(isUnchangableItem(i))
+            if(isUnchangeableItem(i))
                 continue;
             if (items[i].name.equals(AGED_BRIE) || items[i].name.equals(BACKSTAGE)) {
                 if (isLessThanMaxQuality(i)) {
@@ -59,7 +59,7 @@ class GildedRose {
         }
     }
 
-    private boolean isUnchangableItem(int idx) {
+    private boolean isUnchangeableItem(int idx) {
         return items[idx].name.equals(SULFURAS);
     }
 
