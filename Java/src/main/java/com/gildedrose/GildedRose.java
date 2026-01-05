@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import java.util.List;
+import java.util.Map;
+
 class Rule {
     int maxSellIn;
     int qualityDelta;
@@ -15,6 +18,8 @@ class GildedRose {
     String AGED_BRIE = "Aged Brie";
     String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    Map<String, List<Rule>> specialIncreaseRules;
+
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if(isUnchangeableItem(i))
