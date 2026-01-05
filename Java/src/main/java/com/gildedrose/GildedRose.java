@@ -15,7 +15,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if(isUnchangeableItem(i))
                 continue;
-            if (items[i].name.equals(AGED_BRIE) || items[i].name.equals(BACKSTAGE)) {
+            if (isAgedItem(i)) {
                 if (isLessThanMaxQuality(i)) {
                     increaseQuality(i);
 
@@ -57,6 +57,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private boolean isAgedItem(int i) {
+        return items[i].name.equals(AGED_BRIE) || items[i].name.equals(BACKSTAGE);
     }
 
     private void decreaseSellIn(int i) {
