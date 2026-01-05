@@ -6,6 +6,11 @@ import java.util.Map;
 class Rule {
     int maxSellIn;
     int qualityDelta;
+
+    public Rule(int maxSellIn, int qualityDelta) {
+        this.maxSellIn = maxSellIn;
+        this.qualityDelta = qualityDelta;
+    }
 }
 
 class GildedRose {
